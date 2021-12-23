@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import CVForm from './components/CVForm';
 
 class App extends Component {
   constructor() {
@@ -24,7 +25,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        hello world    
+        <CVForm></CVForm>   
       </div>
     )
   }

@@ -31,7 +31,9 @@ class App extends Component {
   };
 
   addEducation = (education) => {
-    const educations = [...this.state.userInfo.educations, education];
+    // filters existing education if it exists incase of update
+    let educations = this.state.userInfo.educations.filter((elem) => elem.id !== education.id)
+    educations = [...educations, education];
     const userInfo = { ...this.state.userInfo, educations };
     this.setState({ userInfo });
   };

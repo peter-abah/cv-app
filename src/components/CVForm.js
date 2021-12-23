@@ -15,6 +15,7 @@ class CVForm extends Component {
         graduationYear: '',
         id: uniqid(),
       },
+      isEducationEdit: false,
     };
   }
 
@@ -26,6 +27,7 @@ class CVForm extends Component {
 
   saveEducationInfo = (e) => {
     this.props.onEducationSave(this.state.education);
+
     this.setState({
       education: {
         school: '',
@@ -34,7 +36,17 @@ class CVForm extends Component {
         graduationYear: '',
         id: uniqid(),
       },
+      isEducationEdit: false,
     });
+  };
+
+  toggleEducationForm = (e) => {
+    if (this.state.isEducationEdit) return;
+
+    const id = e.target.dataset.id;
+    const education = this.props.educations.filter((elem) => elem.id === id)[0];
+    debugger
+    this.setState({ education, isEducationEdit: true });
   };
 
   render() {
@@ -62,7 +74,9 @@ class CVForm extends Component {
         <div>
           <div>
             {educations.map((education) => {
-              return <Education key={education.id} {...education}></Education>;
+              if (this.state.education.id === education.id) return null;
+
+              return <Education key={education.id} toggleForm={this.toggleEducationForm} {...education}></Education>;
             })}
           </div>
           <EducationForm

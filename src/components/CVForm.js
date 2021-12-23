@@ -1,7 +1,8 @@
 import { Component } from 'react';
+import uniqid from 'uniqid';
+import PersonalInfoForm from './PersonalInfoForm';
 import EducationForm from './EducationForm';
 import Education from './Education';
-import uniqid from 'uniqid'
 
 class CVForm extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class CVForm extends Component {
         degree: '',
         graduationYear: '',
         id: uniqid(),
-      }
+      },
     });
   };
 
@@ -49,61 +50,14 @@ class CVForm extends Component {
 
     return (
       <form>
-        <div>
-          <div>
-            <label htmlFor="name">Name</label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              value={name}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="phone">Telephone No</label>
-            <input
-              type="text"
-              name="phone"
-              id="phone"
-              value={phone}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="address">Address</label>
-            <input
-              type="text"
-              name="address"
-              id="address"
-              value={address}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={email}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="description">Describe Yourself</label>
-            <textarea
-              name="description"
-              id="description"
-              onChange={handleChange}
-              value={description}
-            ></textarea>
-          </div>
-        </div>
+        <PersonalInfoForm
+          name={name}
+          phone={phone}
+          address={address}
+          email={email}
+          description={description}
+          handleChange={handleChange}
+        ></PersonalInfoForm>
 
         <div>
           <div>

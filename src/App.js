@@ -23,6 +23,7 @@ class App extends Component {
     this.setState({
       userInfo: { ...this.state.userInfo, ...updated },
     });
+    console.log(this.state);
   };
 
   handleSubmit = (e) => {

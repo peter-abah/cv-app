@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import EducationForm from './EducationForm'
 
 class CVForm extends Component {
   constructor(props) {
@@ -35,6 +36,10 @@ class CVForm extends Component {
             <textarea name="description" id="description" onChange={handleChange}>
             </textarea>
           </div>
+        </div>
+
+        <div>
+          <EducationForm></EducationForm>
         </div>
       </form>
     )

@@ -21,20 +21,30 @@ class App extends Component {
     const updated = { [name]: value };
 
     this.setState({
-      userInfo: {...this.state.userInfo, ...updated}
-    })
+      userInfo: { ...this.state.userInfo, ...updated },
+    });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
   };
 
+  addEducation = (education) => {
+    const educations = [...this.state.userInfo.educations, education];
+    const userInfo = { ...this.state.userInfo, educations };
+    this.setState({ userInfo });
+  };
+
   render() {
     return (
       <div>
-        <CVForm handleChange={this.handleChange} {...this.state.userInfo}></CVForm>   
+        <CVForm
+          handleChange={this.handleChange}
+          addEducation={this.addEducation}
+          {...this.state.userInfo}
+        ></CVForm>
       </div>
-    )
+    );
   }
 }
 

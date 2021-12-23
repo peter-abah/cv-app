@@ -5,16 +5,22 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-
+      userInfo: {
+        name: '',
+        address: '',
+        email: '',
+        phone: '',
+        description: '',
+      },
     };
   }
 
   handleChange = (e) => {
     const { name, value } = e.target;
+    const updated = { [name]: value };
+
     this.setState({
-      userInfo: {
-        [name]: value,
-      }
+      userInfo: {...this.state.userInfo, ...updated}
     })
   };
 
@@ -25,7 +31,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <CVForm></CVForm>   
+        <CVForm handleChange={this.handleChange}></CVForm>   
       </div>
     )
   }

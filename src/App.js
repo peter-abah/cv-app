@@ -11,6 +11,7 @@ class App extends Component {
         email: '',
         phone: '',
         description: '',
+        educations: [],
       },
     };
   }
@@ -31,7 +32,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <CVForm handleChange={this.handleChange}></CVForm>   
+        <CVForm handleChange={this.handleChange} {...this.state.userInfo}></CVForm>   
       </div>
     )
   }

@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import EducationForm from './EducationForm'
+import EducationForm from './EducationForm';
+import Education from './Education';
 
 class CVForm extends Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class CVForm extends Component {
   }
 
   render() {
-    const { handleChange } = this.props;
+    const { handleChange, name, phone, address, email, description, educations } = this.props;
     return (
       <form>
         <div>
@@ -39,6 +40,11 @@ class CVForm extends Component {
         </div>
 
         <div>
+          <div>
+            {educations.map((education, index) => {
+              return <Education key={index} {...education}></Education>
+            })}
+          </div>
           <EducationForm></EducationForm>
         </div>
       </form>

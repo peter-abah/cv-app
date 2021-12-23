@@ -3,9 +3,8 @@ import { Component } from 'react';
 class EducationForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
-
+  
   render() {
     return (
       <div>
@@ -14,6 +13,11 @@ class EducationForm extends Component {
           <div>
             <label htmlFor="school">School</label>
             <input type="text" name="school" id="school" />
+          </div>
+
+          <div>
+            <label htmlFor="course">Course</label>
+            <input type="text" name="course" id="course" />
           </div>
 
           <div>

@@ -1,11 +1,33 @@
-import logo from './logo.svg';
+import { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      hello world
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+
+    };
+  }
+
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({
+      userInfo: {
+        [name]: value,
+      }
+    })
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  render() {
+    return (
+      <div>
+        hello world    
+      </div>
+    )
+  }
 }
 
 export default App;

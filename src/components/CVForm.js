@@ -1,11 +1,40 @@
 import { Component } from 'react';
 import EducationForm from './EducationForm';
 import Education from './Education';
+import uniqid from 'uniqid'
 
 class CVForm extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      education: {
+        school: '',
+        course: '',
+        degree: '',
+        graduationYear: '',
+        id: uniqid(),
+      },
+    };
   }
+
+  handleEducationChange = (e) => {
+    const { name, value } = e.target;
+    const education = { ...this.state.education, [name]: value };
+    this.setState({ education });
+  };
+
+  saveEducationInfo = (e) => {
+    this.props.onEducationSave(this.state.education);
+    this.setState({
+      education: {
+        school: '',
+        course: '',
+        degree: '',
+        graduationYear: '',
+        id: uniqid(),
+      }
+    });
+  };
 
   render() {
     const {
@@ -16,9 +45,8 @@ class CVForm extends Component {
       email,
       description,
       educations,
-      addEducation,
     } = this.props;
-    
+
     return (
       <form>
         <div>
@@ -79,11 +107,15 @@ class CVForm extends Component {
 
         <div>
           <div>
-            {educations.map((education, index) => {
-              return <Education key={index} {...education}></Education>;
+            {educations.map((education) => {
+              return <Education key={education.id} {...education}></Education>;
             })}
           </div>
-          <EducationForm addEducation={addEducation}></EducationForm>
+          <EducationForm
+            saveInfo={this.saveEducationInfo}
+            handleChange={this.handleEducationChange}
+            {...this.state.education}
+          ></EducationForm>
         </div>
       </form>
     );

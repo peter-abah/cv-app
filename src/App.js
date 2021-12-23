@@ -40,7 +40,7 @@ class App extends Component {
       <div>
         <CVForm
           handleChange={this.handleChange}
-          addEducation={this.addEducation}
+          onEducationSave={this.addEducation}
           {...this.state.userInfo}
         ></CVForm>
       </div>

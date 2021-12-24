@@ -55,7 +55,7 @@ class App extends Component {
     let skills = this.state.userInfo.skills.filter(
       (elem) => elem.id !== skill.id
     );
-    skills = [...skills, skills];
+    skills = [...skills, skill];
     const userInfo = { ...this.state.userInfo, skills };
     this.setState({ userInfo });
   };

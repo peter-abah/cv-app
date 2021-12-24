@@ -3,6 +3,7 @@ import uniqid from 'uniqid';
 import PersonalInfoForm from './PersonalInfoForm';
 import EducationForm from './EducationForm';
 import WorkForm from './WorkForm';
+import SkillForm from './SkillForm';
 import Education from './Education';
 import Work from './Work';
 import Skill from './Skill';
@@ -30,6 +31,10 @@ class CVForm extends Component {
       },
       isWorkEdit: false,
       isWorkFormOpen: true,
+      skill: {
+        name: '',
+        id: uniqid(),
+      }
     };
   }
 
@@ -43,6 +48,12 @@ class CVForm extends Component {
     const { name, value } = e.target;
     const work = { ...this.state.work, [name]: value };
     this.setState({ work });
+  };
+
+  handleSkillChange = (e) => {
+    const { name, value } = e.target;
+    const skill = { ...this.state.skill, [name]: value };
+    this.setState({ skill });
   };
 
   saveEducationInfo = (e) => {
@@ -74,6 +85,17 @@ class CVForm extends Component {
       },
       isWorkEdit: false,
     });
+  };
+
+  saveSkillInfo = (e) => {
+    this.props.onSkillSave(this.state.skill);
+
+    this.setState({
+      skill: {
+        name: '',
+        id: uniqid(),
+      },
+    })
   };
 
   toggleWorkForm = (e) => {
@@ -199,6 +221,12 @@ class CVForm extends Component {
               />
             )
           })}
+
+          <SkillForm
+            saveInfo={this.saveSkillInfo}
+            handleChange={this.handleSkillChange}
+            {...this.state.skill}
+          />
         </div>
       </form>
     );

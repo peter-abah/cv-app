@@ -13,6 +13,7 @@ class App extends Component {
         description: '',
         educations: [],
         works: [],
+        skills: [],
       },
     };
   }
@@ -49,6 +50,23 @@ class App extends Component {
     this.setState({ userInfo });
   };
 
+  addSkill = (skill) => {
+    // filters existing skill if it exists incase of update
+    let skills = this.state.userInfo.skills.filter(
+      (elem) => elem.id !== skill.id
+    );
+    skills = [...skills, skills];
+    const userInfo = { ...this.state.userInfo, skills };
+    this.setState({ userInfo });
+  };
+
+  deleteSkill = (e) => {
+    const id = e.target.dataset.id;
+    let skills = this.state.userInfo.skills.filter((elem) => elem.id !== id);
+    const userInfo = { ...this.state.userInfo, skills };
+    this.setState({ userInfo });
+  };
+
   deleteEducation = (e) => {
     const id = e.target.dataset.id;
     let educations = this.state.userInfo.educations.filter(
@@ -72,8 +90,10 @@ class App extends Component {
           handleChange={this.handleChange}
           onEducationSave={this.addEducation}
           onWorkSave={this.addWork}
+          onSkillSave={this.addSkill}
           onDeleteEducation={this.deleteEducation}
           onDeleteWork={this.deleteWork}
+          onDeleteSkill={this.deleteSkill}
           {...this.state.userInfo}
         ></CVForm>
       </div>

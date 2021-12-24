@@ -184,7 +184,9 @@ class CVForm extends Component {
             />
           )}
           {!this.state.isEducationFormOpen && (
-            <button onClick={this.toggleEducationForm}>Add Education</button>
+            <div className="form__btns">
+              <button className="form__btn" onClick={this.toggleEducationForm}>ADD EDUCATION</button>
+            </div>
           )}
         </div>
 
@@ -215,7 +217,9 @@ class CVForm extends Component {
             />
           )}
           {!this.state.isWorkFormOpen && (
-            <button onClick={this.toggleWorkForm}>Add Work</button>
+            <div className="form__btns">
+              <button className="form__btn" onClick={this.toggleWorkForm}>ADD WORK</button>
+            </div>
           )}
         </div>
 

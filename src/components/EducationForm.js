@@ -61,13 +61,13 @@ const EducationForm = (props) => {
           />
         </div>
 
-        <div>
-          <button type="button" onClick={saveInfo}>
-            Save
+        <div className="form__btns">
+          <button className="form__btn" type="button" onClick={saveInfo}>
+            SAVE
           </button>
 
-          <button type="button" onClick={closeForm}>
-            Close
+          <button className="form__btn" type="button" onClick={closeForm}>
+            CLOSE
           </button>
         </div>
       </div>

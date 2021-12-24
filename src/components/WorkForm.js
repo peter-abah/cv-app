@@ -13,7 +13,9 @@ const WorkForm = (props) => {
   return (
     <div>
       <div className="form__field">
-        <label className="form__label" htmlFor="position">Position</label>
+        <label className="form__label" htmlFor="position">
+          Position
+        </label>
         <input
           className="form__input"
           type="text"
@@ -25,7 +27,9 @@ const WorkForm = (props) => {
       </div>
 
       <div className="form__field">
-        <label className="form__label" htmlFor="organisation">Organisation</label>
+        <label className="form__label" htmlFor="organisation">
+          Organisation
+        </label>
         <input
           className="form__input"
           type="text"
@@ -37,7 +41,9 @@ const WorkForm = (props) => {
       </div>
 
       <div className="form__field">
-        <label className="form__label" htmlFor="startDate">Start Date</label>
+        <label className="form__label" htmlFor="startDate">
+          Start Date
+        </label>
         <input
           className="form__input"
           type="text"
@@ -49,7 +55,9 @@ const WorkForm = (props) => {
       </div>
 
       <div className="form__field">
-        <label className="form__label" htmlFor="endDate">End Date</label>
+        <label className="form__label" htmlFor="endDate">
+          End Date
+        </label>
         <input
           className="form__input"
           type="text"
@@ -61,7 +69,9 @@ const WorkForm = (props) => {
       </div>
 
       <div className="form__field">
-        <label className="form__label" htmlFor="description">Work description</label>
+        <label className="form__label" htmlFor="description">
+          Work description
+        </label>
         <textarea
           className="form__input"
           name="description"
@@ -71,14 +81,14 @@ const WorkForm = (props) => {
         ></textarea>
       </div>
 
-      <div>
-        <button type="button" onClick={saveInfo}>
-          Save
+      <div className="form__btns">
+        <button className="form__btn" type="button" onClick={saveInfo}>
+          SAVE
         </button>
 
-        <button type="button" onClick={closeForm}>
-            Close
-          </button>
+        <button className="form__btn" type="button" onClick={closeForm}>
+          CLOSE
+        </button>
       </div>
     </div>
   );

@@ -14,9 +14,11 @@ const SkillForm = (props) => {
           onChange={handleChange}
         />
       </div>
-      <button type="button" onClick={saveInfo}>
-        Save
-      </button>
+      <div className="form__btns">
+        <button className="form__btn" type="button" onClick={saveInfo}>
+          SAVE
+        </button>
+      </div>
     </div>
   );
 };

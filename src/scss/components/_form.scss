@@ -33,4 +33,21 @@
     font-size: .875rem;
     margin-bottom: .3rem;
   }
+
+  &__btns {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 0;
+    padding: .625rem 1rem;
+  }
+
+  &__btn {
+    min-width: 6rem;
+    padding: .75rem;
+    font-size: .875rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-on-primary);
+    background-color: var(--color-secondary);
+  }
 }

@@ -33,7 +33,9 @@ class App extends Component {
 
   addEducation = (education) => {
     // filters existing education if it exists incase of update
-    let educations = this.state.userInfo.educations.filter((elem) => elem.id !== education.id)
+    let educations = this.state.userInfo.educations.filter(
+      (elem) => elem.id !== education.id
+    );
     educations = [...educations, education];
     const userInfo = { ...this.state.userInfo, educations };
     this.setState({ userInfo });
@@ -41,8 +43,24 @@ class App extends Component {
 
   addWork = (work) => {
     // filters existing work if it exists incase of update
-    let works = this.state.userInfo.works.filter((elem) => elem.id !== work.id)
+    let works = this.state.userInfo.works.filter((elem) => elem.id !== work.id);
     works = [...works, work];
+    const userInfo = { ...this.state.userInfo, works };
+    this.setState({ userInfo });
+  };
+
+  deleteEducation = (e) => {
+    const id = e.target.dataset.id;
+    let educations = this.state.userInfo.educations.filter(
+      (elem) => elem.id !== id
+    );
+    const userInfo = { ...this.state.userInfo, educations };
+    this.setState({ userInfo });
+  };
+
+  deleteWork = (e) => {
+    const id = e.target.dataset.id;
+    let works = this.state.userInfo.works.filter((elem) => elem.id !== id);
     const userInfo = { ...this.state.userInfo, works };
     this.setState({ userInfo });
   };
@@ -54,6 +72,8 @@ class App extends Component {
           handleChange={this.handleChange}
           onEducationSave={this.addEducation}
           onWorkSave={this.addWork}
+          onDeleteEducation={this.deleteEducation}
+          onDeleteWork={this.deleteWork}
           {...this.state.userInfo}
         ></CVForm>
       </div>

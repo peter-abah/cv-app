@@ -99,6 +99,8 @@ class CVForm extends Component {
       description,
       educations,
       works,
+      onDeleteEducation,
+      onDeleteWork,
     } = this.props;
 
     return (
@@ -117,7 +119,14 @@ class CVForm extends Component {
             {educations.map((education) => {
               if (this.state.education.id === education.id) return null;
 
-              return <Education key={education.id} toggleForm={this.toggleEducationForm} {...education} />;
+              return (
+                <Education
+                  key={education.id}
+                  toggleForm={this.toggleEducationForm}
+                  deleteEducation={onDeleteEducation}
+                  {...education}
+                />
+              );
             })}
           </div>
           <EducationForm
@@ -131,7 +140,14 @@ class CVForm extends Component {
           {works.map((work) => {
             if (this.state.work.id === work.id) return null;
 
-            return <Work key={work.id} toggleForm={this.toggleWorkForm} {...work} />;
+            return (
+              <Work
+                key={work.id}
+                toggleForm={this.toggleWorkForm}
+                deleteWork={onDeleteWork}
+                {...work}
+              />
+            );
           })}
           <WorkForm
             saveInfo={this.saveWorkInfo}

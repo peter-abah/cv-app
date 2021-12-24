@@ -2,7 +2,9 @@ import { Component } from 'react';
 import uniqid from 'uniqid';
 import PersonalInfoForm from './PersonalInfoForm';
 import EducationForm from './EducationForm';
+import WorkForm from './WorkForm';
 import Education from './Education';
+import Work from './Work';
 
 class CVForm extends Component {
   constructor(props) {
@@ -16,6 +18,15 @@ class CVForm extends Component {
         id: uniqid(),
       },
       isEducationEdit: false,
+      work: {
+        organisation: '',
+        position: '',
+        startDate: '',
+        endDate: '',
+        description: '',
+        id: uniqid(),
+      },
+      isWorkEdit: false,
     };
   }
 
@@ -23,6 +34,12 @@ class CVForm extends Component {
     const { name, value } = e.target;
     const education = { ...this.state.education, [name]: value };
     this.setState({ education });
+  };
+
+  handleWorkChange = (e) => {
+    const { name, value } = e.target;
+    const work = { ...this.state.work, [name]: value };
+    this.setState({ work });
   };
 
   saveEducationInfo = (e) => {
@@ -40,13 +57,36 @@ class CVForm extends Component {
     });
   };
 
+  saveWorkInfo = (e) => {
+    this.props.onWorkSave(this.state.work);
+
+    this.setState({
+      work: {
+        organisation: '',
+        position: '',
+        startDate: '',
+        endDate: '',
+        description: '',
+        id: uniqid(),
+      },
+      isWorkEdit: false,
+    });
+  };
+
   toggleEducationForm = (e) => {
     if (this.state.isEducationEdit) return;
 
     const id = e.target.dataset.id;
     const education = this.props.educations.filter((elem) => elem.id === id)[0];
-    debugger
     this.setState({ education, isEducationEdit: true });
+  };
+
+  toggleWorkForm = (e) => {
+    if (this.state.isWorkEdit) return;
+
+    const id = e.target.dataset.id;
+    const work = this.props.works.filter((elem) => elem.id === id)[0];
+    this.setState({ work, isworkEdit: true });
   };
 
   render() {
@@ -58,6 +98,7 @@ class CVForm extends Component {
       email,
       description,
       educations,
+      works,
     } = this.props;
 
     return (
@@ -76,14 +117,27 @@ class CVForm extends Component {
             {educations.map((education) => {
               if (this.state.education.id === education.id) return null;
 
-              return <Education key={education.id} toggleForm={this.toggleEducationForm} {...education}></Education>;
+              return <Education key={education.id} toggleForm={this.toggleEducationForm} {...education} />;
             })}
           </div>
           <EducationForm
             saveInfo={this.saveEducationInfo}
             handleChange={this.handleEducationChange}
             {...this.state.education}
-          ></EducationForm>
+          />
+        </div>
+
+        <div>
+          {works.map((work) => {
+            if (this.state.work.id === work.id) return null;
+
+            return <Work key={work.id} toggleForm={this.toggleWorkForm} {...work} />;
+          })}
+          <WorkForm
+            saveInfo={this.saveWorkInfo}
+            handleChange={this.handleWorkChange}
+            {...this.state.work}
+          />
         </div>
       </form>
     );

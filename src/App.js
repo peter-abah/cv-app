@@ -12,6 +12,7 @@ class App extends Component {
         phone: '',
         description: '',
         educations: [],
+        works: [],
       },
     };
   }
@@ -38,12 +39,21 @@ class App extends Component {
     this.setState({ userInfo });
   };
 
+  addWork = (work) => {
+    // filters existing work if it exists incase of update
+    let works = this.state.userInfo.works.filter((elem) => elem.id !== work.id)
+    works = [...works, work];
+    const userInfo = { ...this.state.userInfo, works };
+    this.setState({ userInfo });
+  };
+
   render() {
     return (
       <div>
         <CVForm
           handleChange={this.handleChange}
           onEducationSave={this.addEducation}
+          onWorkSave={this.addWork}
           {...this.state.userInfo}
         ></CVForm>
       </div>

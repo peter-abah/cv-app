@@ -5,6 +5,7 @@ import EducationForm from './EducationForm';
 import WorkForm from './WorkForm';
 import Education from './Education';
 import Work from './Work';
+import Skill from './Skill';
 
 class CVForm extends Component {
   constructor(props) {
@@ -117,8 +118,10 @@ class CVForm extends Component {
       description,
       educations,
       works,
+      skills,
       onDeleteEducation,
       onDeleteWork,
+      onDeleteSkill,
     } = this.props;
 
     return (
@@ -184,6 +187,18 @@ class CVForm extends Component {
           {!this.state.isWorkFormOpen && (
             <button onClick={this.toggleWorkForm}>Add Work</button>
           )}
+        </div>
+
+        <div>
+          {skills.map((skill) => {
+            return (
+              <Skill
+                key={skill.id}
+                deleteSkill={onDeleteSkill}
+                {...skill}
+              />
+            )
+          })}
         </div>
       </form>
     );

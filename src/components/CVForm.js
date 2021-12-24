@@ -18,6 +18,7 @@ class CVForm extends Component {
         id: uniqid(),
       },
       isEducationEdit: false,
+      isEducationFormOpen: true,
       work: {
         organisation: '',
         position: '',
@@ -27,6 +28,7 @@ class CVForm extends Component {
         id: uniqid(),
       },
       isWorkEdit: false,
+      isWorkFormOpen: true,
     };
   }
 
@@ -73,20 +75,36 @@ class CVForm extends Component {
     });
   };
 
-  toggleEducationForm = (e) => {
+  toggleWorkForm = (e) => {
+    if (this.state.isWorkEdit) return;
+
+    this.setState({
+      isWorkFormOpen: !this.state.isWorkFormOpen,
+    });
+  };
+
+  toggleEducationForm = () => {
+    if (this.state.isEducationEdit) return;
+
+    this.setState({
+      isEducationFormOpen: !this.state.isEducationFormOpen,
+    });
+  };
+
+  toggleEditEducationForm = (e) => {
     if (this.state.isEducationEdit) return;
 
     const id = e.target.dataset.id;
     const education = this.props.educations.filter((elem) => elem.id === id)[0];
-    this.setState({ education, isEducationEdit: true });
+    this.setState({ education, isEducationEdit: true, isEducationFormOpen: true });
   };
 
-  toggleWorkForm = (e) => {
+  toggleEditWorkForm = (e) => {
     if (this.state.isWorkEdit) return;
 
     const id = e.target.dataset.id;
     const work = this.props.works.filter((elem) => elem.id === id)[0];
-    this.setState({ work, isworkEdit: true });
+    this.setState({ work, isworkEdit: true, isWorkFormOpen: true });
   };
 
   render() {
@@ -122,18 +140,24 @@ class CVForm extends Component {
               return (
                 <Education
                   key={education.id}
-                  toggleForm={this.toggleEducationForm}
+                  toggleForm={this.toggleEditEducationForm}
                   deleteEducation={onDeleteEducation}
                   {...education}
                 />
               );
             })}
           </div>
-          <EducationForm
-            saveInfo={this.saveEducationInfo}
-            handleChange={this.handleEducationChange}
-            {...this.state.education}
-          />
+          {this.state.isEducationFormOpen && (
+            <EducationForm
+              saveInfo={this.saveEducationInfo}
+              handleChange={this.handleEducationChange}
+              closeForm={this.toggleEducationForm}
+              {...this.state.education}
+            />
+          )}
+          {!this.state.isEducationFormOpen && (
+            <button onClick={this.toggleEducationForm}>Add Education</button>
+          )}
         </div>
 
         <div>
@@ -143,17 +167,23 @@ class CVForm extends Component {
             return (
               <Work
                 key={work.id}
-                toggleForm={this.toggleWorkForm}
+                toggleForm={this.toggleEditWorkForm}
                 deleteWork={onDeleteWork}
                 {...work}
               />
             );
           })}
-          <WorkForm
-            saveInfo={this.saveWorkInfo}
-            handleChange={this.handleWorkChange}
-            {...this.state.work}
-          />
+          {this.state.isWorkFormOpen && (
+            <WorkForm
+              saveInfo={this.saveWorkInfo}
+              handleChange={this.handleWorkChange}
+              closeForm={this.toggleWorkForm}
+              {...this.state.work}
+            />
+          )}
+          {!this.state.isWorkFormOpen && (
+            <button onClick={this.toggleWorkForm}>Add Work</button>
+          )}
         </div>
       </form>
     );

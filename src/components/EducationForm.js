@@ -1,6 +1,13 @@
 const EducationForm = (props) => {
-  const { school, course, degree, graduationYear, handleChange, saveInfo } =
-    props;
+  const {
+    school,
+    course,
+    degree,
+    graduationYear,
+    handleChange,
+    saveInfo,
+    closeForm,
+  } = props;
   return (
     <div>
       <div>
@@ -53,6 +60,10 @@ const EducationForm = (props) => {
         <div>
           <button type="button" onClick={saveInfo}>
             Save
+          </button>
+
+          <button type="button" onClick={closeForm}>
+            Close
           </button>
         </div>
       </div>

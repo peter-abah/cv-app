@@ -12,9 +12,10 @@ const WorkForm = (props) => {
 
   return (
     <div>
-      <div>
-        <label htmlFor="position">Position</label>
+      <div className="form__field">
+        <label className="form__label" htmlFor="position">Position</label>
         <input
+          className="form__input"
           type="text"
           name="position"
           id="position"
@@ -23,9 +24,10 @@ const WorkForm = (props) => {
         />
       </div>
 
-      <div>
-        <label htmlFor="organisation">Organisation</label>
+      <div className="form__field">
+        <label className="form__label" htmlFor="organisation">Organisation</label>
         <input
+          className="form__input"
           type="text"
           name="organisation"
           id="organisation"
@@ -34,9 +36,10 @@ const WorkForm = (props) => {
         />
       </div>
 
-      <div>
-        <label htmlFor="startDate">Start Date</label>
+      <div className="form__field">
+        <label className="form__label" htmlFor="startDate">Start Date</label>
         <input
+          className="form__input"
           type="text"
           name="startDate"
           id="startDate"
@@ -45,9 +48,10 @@ const WorkForm = (props) => {
         />
       </div>
 
-      <div>
-        <label htmlFor="endDate">End Date</label>
+      <div className="form__field">
+        <label className="form__label" htmlFor="endDate">End Date</label>
         <input
+          className="form__input"
           type="text"
           name="endDate"
           id="endDate"
@@ -56,9 +60,10 @@ const WorkForm = (props) => {
         />
       </div>
 
-      <div>
-        <label htmlFor="description">Work description</label>
+      <div className="form__field">
+        <label className="form__label" htmlFor="description">Work description</label>
         <textarea
+          className="form__input"
           name="description"
           id="description"
           value={description}

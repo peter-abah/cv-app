@@ -3,13 +3,22 @@ const SkillForm = (props) => {
 
   return (
     <div>
-      <div>
-        <label htmlFor="skill">Skill Name</label>
-        <input type="text" name="name" id="skill" value={name} onChange={handleChange} />
+      <div className="form__field">
+        <label className="form__label" htmlFor="skill">Skill Name</label>
+        <input
+          className="form__input"
+          type="text"
+          name="name"
+          id="skill"
+          value={name}
+          onChange={handleChange}
+        />
       </div>
-      <button type="button" onClick={saveInfo}>Save</button>
+      <button type="button" onClick={saveInfo}>
+        Save
+      </button>
     </div>
-  )
+  );
 };
 
 export default SkillForm;

@@ -11,9 +11,10 @@ const EducationForm = (props) => {
   return (
     <div>
       <div>
-        <div>
-          <label htmlFor="school">School</label>
+        <div className="form__field">
+          <label className="form__label" htmlFor="school">School</label>
           <input
+            className="form__input"
             type="text"
             name="school"
             id="school"
@@ -22,9 +23,10 @@ const EducationForm = (props) => {
           />
         </div>
 
-        <div>
-          <label htmlFor="course">Course</label>
+        <div className="form__field">
+          <label className="form__label" htmlFor="course">Course</label>
           <input
+            className="form__input"
             type="text"
             name="course"
             id="course"
@@ -33,9 +35,10 @@ const EducationForm = (props) => {
           />
         </div>
 
-        <div>
-          <label htmlFor="school">Degree</label>
+        <div className="form__field">
+          <label className="form__label" htmlFor="school">Degree</label>
           <input
+            className="form__input"
             type="text"
             name="degree"
             id="degree"
@@ -44,9 +47,10 @@ const EducationForm = (props) => {
           />
         </div>
 
-        <div>
-          <label htmlFor="graduationYear">Graduation Year</label>
+        <div className="form__field">
+          <label className="form__label" htmlFor="graduationYear">Graduation Year</label>
           <input
+            className="form__input"
             type="number"
             max="9999"
             min="1000"

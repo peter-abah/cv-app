@@ -147,7 +147,7 @@ class CVForm extends Component {
     } = this.props;
 
     return (
-      <form>
+      <form className="form">
         <PersonalInfoForm
           name={name}
           phone={phone}
@@ -157,7 +157,9 @@ class CVForm extends Component {
           handleChange={handleChange}
         ></PersonalInfoForm>
 
-        <div>
+        <div className="form__section">
+          <h2 className="form__section__title">Education</h2>
+          
           <div>
             {educations.map((education) => {
               if (this.state.education.id === education.id) return null;
@@ -172,6 +174,7 @@ class CVForm extends Component {
               );
             })}
           </div>
+
           {this.state.isEducationFormOpen && (
             <EducationForm
               saveInfo={this.saveEducationInfo}
@@ -185,19 +188,24 @@ class CVForm extends Component {
           )}
         </div>
 
-        <div>
-          {works.map((work) => {
-            if (this.state.work.id === work.id) return null;
+        <div className="form__section">
+          <h2 className="form__section__title">Work History</h2>
 
-            return (
-              <Work
-                key={work.id}
-                toggleForm={this.toggleEditWorkForm}
-                deleteWork={onDeleteWork}
-                {...work}
-              />
-            );
-          })}
+          <div>
+            {works.map((work) => {
+              if (this.state.work.id === work.id) return null;
+
+              return (
+                <Work
+                  key={work.id}
+                  toggleForm={this.toggleEditWorkForm}
+                  deleteWork={onDeleteWork}
+                  {...work}
+                />
+              );
+            })}
+          </div>
+
           {this.state.isWorkFormOpen && (
             <WorkForm
               saveInfo={this.saveWorkInfo}
@@ -211,16 +219,20 @@ class CVForm extends Component {
           )}
         </div>
 
-        <div>
-          {skills.map((skill) => {
-            return (
-              <Skill
-                key={skill.id}
-                deleteSkill={onDeleteSkill}
-                {...skill}
-              />
-            )
-          })}
+        <div className="form__section">
+          <h2 className="form__section__title">Skills</h2>
+
+          <div>
+            {skills.map((skill) => {
+              return (
+                <Skill
+                  key={skill.id}
+                  deleteSkill={onDeleteSkill}
+                  {...skill}
+                />
+              )
+            })}
+          </div>
 
           <SkillForm
             saveInfo={this.saveSkillInfo}

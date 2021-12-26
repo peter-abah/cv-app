@@ -39,6 +39,10 @@
     justify-content: space-around;
     margin: 1rem 0;
     padding: .625rem 1rem;
+
+    &--small {
+      margin: 0;
+    }
   }
 
   &__btn {
@@ -49,5 +53,11 @@
     text-align: center;
     color: var(--color-on-primary);
     background-color: var(--color-secondary);
+    
+    &--small {
+      padding: .5rem;
+      min-width: 4rem;
+      font-size: .75rem;
+    }
   }
 }

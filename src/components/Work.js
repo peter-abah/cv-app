@@ -11,7 +11,7 @@ const Work = (props) => {
   } = props;
 
   return (
-    <div>
+    <div className="work">
       <p>
         {position} {organisation}
       </p>
@@ -19,12 +19,14 @@ const Work = (props) => {
         {startDate} to {endDate}
       </p>
       <p>{description}</p>
-      <button type="button" data-id={id} onClick={toggleForm}>
-        Edit
-      </button>
-      <button type="button" data-id={id} onClick={deleteWork}>
-        Delete
-      </button>
+      <div className="form__btns form__btns--small">
+        <button className="form__btn form__btn--small" type="button" data-id={id} onClick={toggleForm}>
+          Edit
+        </button>
+        <button className="form__btn form__btn--small" type="button" data-id={id} onClick={deleteWork}>
+          Delete
+        </button>
+      </div>
     </div>
   );
 };

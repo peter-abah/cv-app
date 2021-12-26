@@ -11,8 +11,8 @@ const Work = (props) => {
   } = props;
 
   return (
-    <div className="work">
-      <h3 className="work__title">
+    <div className="form__section-preview">
+      <h3 className="form__section-preview__title">
         <span>{position}</span> <span>{organisation}</span>
       </h3>
       {startDate && (
@@ -23,7 +23,7 @@ const Work = (props) => {
         </p>
       )}
       <p>{description}</p>
-      <div className="work__btns">
+      <div className="form__section-preview__btns">
         <button
           className="form__btn form__btn--small"
           type="button"

@@ -1,4 +1,4 @@
-.work {
+.form__section-preview {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -12,6 +12,7 @@
   }
 
   &__btns {
+    margin-top: .5rem;
     display: flex;
     gap: 1rem;
   }

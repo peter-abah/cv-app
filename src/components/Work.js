@@ -12,14 +12,14 @@ const Work = (props) => {
 
   return (
     <div className="work">
-      <p>
-        {position} {organisation}
-      </p>
+      <h3 className="work__title">
+        <span>{position}</span> <span>{organisation}</span>
+      </h3>
       <p>
         {startDate} to {endDate}
       </p>
       <p>{description}</p>
-      <div className="form__btns form__btns--small">
+      <div className="work__btns">
         <button className="form__btn form__btn--small" type="button" data-id={id} onClick={toggleForm}>
           Edit
         </button>

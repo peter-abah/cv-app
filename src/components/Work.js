@@ -15,15 +15,29 @@ const Work = (props) => {
       <h3 className="work__title">
         <span>{position}</span> <span>{organisation}</span>
       </h3>
-      <p>
-        {startDate} to {endDate}
-      </p>
+      {startDate && (
+        <p>
+          <span>{startDate}</span>
+          <span> to </span>
+          <span>{endDate ? endDate : 'Now'}</span>
+        </p>
+      )}
       <p>{description}</p>
       <div className="work__btns">
-        <button className="form__btn form__btn--small" type="button" data-id={id} onClick={toggleForm}>
+        <button
+          className="form__btn form__btn--small"
+          type="button"
+          data-id={id}
+          onClick={toggleForm}
+        >
           Edit
         </button>
-        <button className="form__btn form__btn--small" type="button" data-id={id} onClick={deleteWork}>
+        <button
+          className="form__btn form__btn--small"
+          type="button"
+          data-id={id}
+          onClick={deleteWork}
+        >
           Delete
         </button>
       </div>

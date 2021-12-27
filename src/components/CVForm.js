@@ -68,6 +68,7 @@ class CVForm extends Component {
         id: uniqid(),
       },
       isEducationEdit: false,
+      isEducationFormOpen: false,
     });
   };
 
@@ -84,6 +85,7 @@ class CVForm extends Component {
         id: uniqid(),
       },
       isWorkEdit: false,
+      isWorkFormOpen: false,
     });
   };
 
@@ -127,7 +129,7 @@ class CVForm extends Component {
 
     const id = e.target.dataset.id;
     const work = this.props.works.filter((elem) => elem.id === id)[0];
-    this.setState({ work, isworkEdit: true, isWorkFormOpen: true });
+    this.setState({ work, isWorkEdit: true, isWorkFormOpen: true });
   };
 
   render() {

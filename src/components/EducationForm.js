@@ -4,6 +4,7 @@ const EducationForm = (props) => {
     course,
     degree,
     graduationYear,
+    errors,
     handleChange,
     saveInfo,
     closeForm,
@@ -21,6 +22,7 @@ const EducationForm = (props) => {
             value={school}
             onChange={handleChange}
           />
+          {errors.school && <p className="form__error-msg">{errors.school}</p>}
         </div>
 
         <div className="form__field">
@@ -33,6 +35,7 @@ const EducationForm = (props) => {
             value={course}
             onChange={handleChange}
           />
+          {errors.course && <p className="form__error-msg">{errors.course}</p>}
         </div>
 
         <div className="form__field">
@@ -45,13 +48,14 @@ const EducationForm = (props) => {
             value={degree}
             onChange={handleChange}
           />
+          {errors.degree && <p className="form__error-msg">{errors.degree}</p>}
         </div>
 
         <div className="form__field">
           <label className="form__label" htmlFor="graduationYear">Graduation Year</label>
           <input
             className="form__input"
-            type="number"
+            type="month"
             max="9999"
             min="1000"
             id="graduationYear"
@@ -59,6 +63,7 @@ const EducationForm = (props) => {
             value={graduationYear}
             onChange={handleChange}
           />
+          {errors.graduationYear && <p className="form__error-msg">{errors.graduationYear}</p>}
         </div>
 
         <div className="form__btns">

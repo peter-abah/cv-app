@@ -60,4 +60,10 @@
       font-size: .75rem;
     }
   }
+
+  &__error-msg {
+    margin-top: 2px;
+    color: var(--color-error);
+    font-size: .625rem;
+  }
 }

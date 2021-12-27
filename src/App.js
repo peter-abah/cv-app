@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import humanizeString from 'humanize-string';
 import Header from './components/Header';
 import CVForm from './components/CVForm';
 
@@ -15,9 +16,48 @@ class App extends Component {
         educations: [],
         works: [],
         skills: [],
+        errors: {
+          name: '',
+          address: '',
+          email: '',
+          phone: '',
+          description: '',
+        },
       },
     };
   }
+
+  getErrorMsg = (key) => {
+    const value = this.state.userInfo[key];
+    const emailRegex = /.+@.+/;
+    
+    if (key === 'email') {
+      return emailRegex.test(value) ? '' : 'Email is invalid';
+    }
+
+    return value === '' ? `${humanizeString(key)} can't be empty` : '';
+  };
+
+  scrollToForm = () => {
+    const section = document.getElementById('personal');
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  validateFields = () => {
+    const keys = ['name', 'address', 'email', 'phone', 'description'];
+
+    const errors = keys.reduce((acc, key) => {
+      acc[key] = this.getErrorMsg(key);
+      return acc; 
+    }, {});
+
+    const userInfo = {...this.state.userInfo, errors};
+    this.setState({ userInfo });
+
+    const isValid = Object.keys(errors).every((msg) => msg.length === 0);
+    if (!isValid) this.scrollToForm();
+    return isValid;
+  };
 
   handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +66,6 @@ class App extends Component {
     this.setState({
       userInfo: { ...this.state.userInfo, ...updated },
     });
-    console.log(this.state);
   };
 
   handleSubmit = (e) => {
@@ -97,7 +136,8 @@ class App extends Component {
           onDeleteWork={this.deleteWork}
           onDeleteSkill={this.deleteSkill}
           {...this.state.userInfo}
-        ></CVForm>
+        />
+        <button className="form__btn" onClick={this.validateFields}>Preview</button>
       </div>
     );
   }

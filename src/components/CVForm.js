@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import uniqid from 'uniqid';
+import humanizeString from 'humanize-string';
 import PersonalInfoForm from './PersonalInfoForm';
 import EducationForm from './EducationForm';
 import WorkForm from './WorkForm';
@@ -19,6 +20,12 @@ class CVForm extends Component {
         graduationYear: '',
         id: uniqid(),
       },
+      educationErrors: {
+        school: '',
+        course: '',
+        degree: '',
+        graduationYear: '',
+      },
       isEducationEdit: false,
       isEducationFormOpen: true,
       work: {
@@ -29,11 +36,21 @@ class CVForm extends Component {
         description: '',
         id: uniqid(),
       },
+      workErrors: {
+        organisation: '',
+        position: '',
+        startDate: '',
+        endDate: '',
+        description: '',
+      },
       isWorkEdit: false,
       isWorkFormOpen: true,
       skill: {
         name: '',
         id: uniqid(),
+      },
+      skillErrors: {
+        name: '',
       }
     };
   }
@@ -56,7 +73,23 @@ class CVForm extends Component {
     this.setState({ skill });
   };
 
+  isEducationFormValid = () => {
+    const keys = ['school', 'course', 'degree', 'graduationYear'];
+    const errors = keys.reduce((acc, key) => {
+      const value = this.state.education[key];
+      acc[key] = value === '' ? `${humanizeString(key)} should not be empty`: '';
+      return acc; 
+    }, {});
+
+    const educationErrors = {...this.state.workErrors, ...errors};
+    this.setState({ educationErrors });
+
+    const isValid = Object.values(errors).every((msg) => msg.length === 0);
+    return isValid;
+  }
+
   saveEducationInfo = (e) => {
+    if (!this.isEducationFormValid()) return;
     this.props.onEducationSave(this.state.education);
 
     this.setState({
@@ -72,7 +105,24 @@ class CVForm extends Component {
     });
   };
 
+  isWorkFormValid = () => {
+    const keys = ['organisation', 'position'];
+    const errors = keys.reduce((acc, key) => {
+      const value = this.state.work[key];
+      acc[key] = value === '' ? `${humanizeString(key)} should not be empty`: '';
+      return acc; 
+    }, {});
+
+    const workErrors = {...this.state.workErrors, ...errors};
+    this.setState({ workErrors });
+
+    const isValid = Object.values(errors).every((msg) => msg.length === 0);
+    debugger
+    return isValid;
+  }
+
   saveWorkInfo = (e) => {
+    if (!this.isWorkFormValid()) return;
     this.props.onWorkSave(this.state.work);
 
     this.setState({
@@ -143,6 +193,7 @@ class CVForm extends Component {
       educations,
       works,
       skills,
+      errors,
       onDeleteEducation,
       onDeleteWork,
       onDeleteSkill,
@@ -156,6 +207,7 @@ class CVForm extends Component {
           address={address}
           email={email}
           description={description}
+          errors={errors}
           handleChange={handleChange}
         ></PersonalInfoForm>
 
@@ -179,6 +231,7 @@ class CVForm extends Component {
 
           {this.state.isEducationFormOpen && (
             <EducationForm
+              errors={this.state.educationErrors}
               saveInfo={this.saveEducationInfo}
               handleChange={this.handleEducationChange}
               closeForm={this.toggleEducationForm}
@@ -212,6 +265,7 @@ class CVForm extends Component {
 
           {this.state.isWorkFormOpen && (
             <WorkForm
+              errors={this.state.workErrors}
               saveInfo={this.saveWorkInfo}
               handleChange={this.handleWorkChange}
               closeForm={this.toggleWorkForm}

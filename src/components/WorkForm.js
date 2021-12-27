@@ -5,6 +5,7 @@ const WorkForm = (props) => {
     startDate,
     endDate,
     description,
+    errors,
     handleChange,
     saveInfo,
     closeForm,
@@ -24,6 +25,7 @@ const WorkForm = (props) => {
           value={position}
           onChange={handleChange}
         />
+        {errors.position && <p className="form__error-msg">{errors.position}</p>}
       </div>
 
       <div className="form__field">
@@ -38,6 +40,7 @@ const WorkForm = (props) => {
           value={organisation}
           onChange={handleChange}
         />
+        {errors.organisation && <p className="form__error-msg">{errors.organisation}</p>}
       </div>
 
       <div className="form__field">
@@ -52,6 +55,7 @@ const WorkForm = (props) => {
           value={startDate}
           onChange={handleChange}
         />
+        {errors.startDate && <p className="form__error-msg">{errors.startDate}</p>}
       </div>
 
       <div className="form__field">
@@ -66,6 +70,7 @@ const WorkForm = (props) => {
           value={endDate}
           onChange={handleChange}
         />
+        {errors.endDate && <p className="form__error-msg">{errors.endDate}</p>}
       </div>
 
       <div className="form__field">
@@ -79,6 +84,7 @@ const WorkForm = (props) => {
           value={description}
           onChange={handleChange}
         ></textarea>
+        {errors.description && <p className="form__error-msg">{errors.description}</p>}
       </div>
 
       <div className="form__btns">

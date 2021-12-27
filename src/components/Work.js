@@ -1,3 +1,5 @@
+import formatDate from '../formatDate';
+
 const Work = (props) => {
   const {
     id,
@@ -17,9 +19,9 @@ const Work = (props) => {
       </h3>
       {startDate && (
         <p>
-          <span>{startDate}</span>
+          <span>{formatDate(startDate)}</span>
           <span> to </span>
-          <span>{endDate ? endDate : 'Now'}</span>
+          <span>{endDate ? formatDate(endDate) : 'Now'}</span>
         </p>
       )}
       <p>{description}</p>

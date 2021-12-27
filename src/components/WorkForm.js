@@ -49,7 +49,7 @@ const WorkForm = (props) => {
         </label>
         <input
           className="form__input"
-          type="text"
+          type="month"
           name="startDate"
           id="startDate"
           value={startDate}
@@ -64,7 +64,7 @@ const WorkForm = (props) => {
         </label>
         <input
           className="form__input"
-          type="text"
+          type="month"
           name="endDate"
           id="endDate"
           value={endDate}

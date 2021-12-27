@@ -1,0 +1,11 @@
+.skill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .75rem .5rem;
+  margin: .5rem;
+
+  &__name {
+    font-weight: 500;
+  }
+}

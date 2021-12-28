@@ -148,7 +148,11 @@ class App extends Component {
         <button className="form__btn" onClick={this.showPreview}>
           Preview
         </button>
-        {this.state.shouldShowPreview && <Preview {...this.state.userInfo} />}
+        {this.state.shouldShowPreview && (
+          <div className="preview-wrapper">
+            <Preview {...this.state.userInfo} />
+          </div>
+        )}
       </div>
     );
   }

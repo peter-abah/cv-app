@@ -4,18 +4,18 @@ const WorkPreview = (props) => {
   const { organisation, position, startDate, endDate, description } = props;
 
   return (
-    <div>
+    <div className="preview__info">
       <div>
-        <h4>{position}</h4>
+        <h4 className="preview__info__title">{position}</h4>
         <p>{organisation}</p>
         {startDate && (
-          <p>
+          <p className="preview__info__date">
             <span>{formatDate(startDate)}</span> -{' '}
             <span>{endDate ? formatDate(endDate) : 'Current'}</span>
           </p>
         )}
       </div>
-      {description && <p>{description}</p>}
+      {description && <p className="preview__info_description">{description}</p>}
     </div>
   );
 };

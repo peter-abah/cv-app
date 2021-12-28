@@ -1,4 +1,4 @@
-import formatDate from './formatDate';
+import formatDate from '../formatDate';
 
 const EducationPreview = (props) => {
   const { school, course, degree, graduationYear } = props;

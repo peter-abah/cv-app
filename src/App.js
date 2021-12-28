@@ -2,6 +2,7 @@ import { Component } from 'react';
 import humanizeString from 'humanize-string';
 import Header from './components/Header';
 import CVForm from './components/CVForm';
+import Preview from './components/Preview';
 
 class App extends Component {
   constructor() {
@@ -24,13 +25,14 @@ class App extends Component {
           description: '',
         },
       },
+      shouldShowPreview: false,
     };
   }
 
   getErrorMsg = (key) => {
     const value = this.state.userInfo[key];
     const emailRegex = /.+@.+/;
-    
+
     if (key === 'email') {
       return emailRegex.test(value) ? '' : 'Email is invalid';
     }
@@ -41,22 +43,28 @@ class App extends Component {
   scrollToForm = () => {
     const section = document.getElementById('personal');
     section.scrollIntoView({ behavior: 'smooth' });
-  }
+  };
 
   validateFields = () => {
     const keys = ['name', 'address', 'email', 'phone', 'description'];
 
     const errors = keys.reduce((acc, key) => {
       acc[key] = this.getErrorMsg(key);
-      return acc; 
+      return acc;
     }, {});
 
-    const userInfo = {...this.state.userInfo, errors};
+    const userInfo = { ...this.state.userInfo, errors };
     this.setState({ userInfo });
 
-    const isValid = Object.keys(errors).every((msg) => msg.length === 0);
+    const isValid = Object.values(errors).every((msg) => msg.length === 0);
     if (!isValid) this.scrollToForm();
     return isValid;
+  };
+
+  showPreview = () => {
+    if (!this.validateFields()) return;
+
+    this.setState({ shouldShowPreview: true });
   };
 
   handleChange = (e) => {
@@ -137,7 +145,10 @@ class App extends Component {
           onDeleteSkill={this.deleteSkill}
           {...this.state.userInfo}
         />
-        <button className="form__btn" onClick={this.validateFields}>Preview</button>
+        <button className="form__btn" onClick={this.showPreview}>
+          Preview
+        </button>
+        {this.state.shouldShowPreview && <Preview {...this.state.userInfo} />}
       </div>
     );
   }

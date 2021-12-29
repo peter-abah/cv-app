@@ -11,10 +11,10 @@ const Education = (props) => {
       <p>{formatDate(graduationYear)}</p>
       <p>{school}</p>
       <div className="form__section-preview__btns">
-        <button className="form__btn form__btn--small" data-id={id} type="button" onClick={toggleForm}>
+        <button className="btn btn--small" data-id={id} type="button" onClick={toggleForm}>
           Edit
         </button>
-        <button className="form__btn form__btn--small" data-id={id} type="button" onClick={deleteEducation}>
+        <button className="btn btn--small" data-id={id} type="button" onClick={deleteEducation}>
           Delete
         </button>
       </div>

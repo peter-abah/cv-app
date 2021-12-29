@@ -5,14 +5,14 @@ class PrintButton extends Component {
   componentRef = null;
 
   printTrigger = () => {
-    return <button className="form__btn">Print</button>;
+    return <button className="btn">Print</button>;
   };
 
   render() {
     const { ComponentClass, componentProps } = this.props;
 
     return (
-      <div className="form__btns">
+      <div className="btns">
         <ReactToPrint
           trigger={this.printTrigger}
           content={() => this.componentRef}

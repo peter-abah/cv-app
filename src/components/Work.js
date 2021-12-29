@@ -27,7 +27,7 @@ const Work = (props) => {
       <p>{description}</p>
       <div className="form__section-preview__btns">
         <button
-          className="form__btn form__btn--small"
+          className="btn btn--small"
           type="button"
           data-id={id}
           onClick={toggleForm}
@@ -35,7 +35,7 @@ const Work = (props) => {
           Edit
         </button>
         <button
-          className="form__btn form__btn--small"
+          className="btn btn--small"
           type="button"
           data-id={id}
           onClick={deleteWork}

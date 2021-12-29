@@ -3,7 +3,14 @@ const Skill = (props) => {
   return (
     <div className="skill">
       <p className="skill__name">{name}</p>
-      <button className="form__btn form__btn--small" type="button" data-id={id} onClick={deleteSkill}>Delete</button>
+      <button
+        className="btn btn--small"
+        type="button"
+        data-id={id}
+        onClick={deleteSkill}
+      >
+        Delete
+      </button>
     </div>
   );
 };

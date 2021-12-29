@@ -38,35 +38,7 @@
   &__label {
     font-size: .875rem;
     margin-bottom: .3rem;
-  }
-
-  &__btns {
-    display: flex;
-    justify-content: space-around;
-    margin: 1rem auto;
-    padding: .625rem 1rem;
-    max-width: 20rem;
-
-    &--small {
-      margin: 0;
-    }
-  }
-
-  &__btn {
-    min-width: 6rem;
-    padding: .75rem;
-    font-size: .875rem;
-    font-weight: 700;
-    text-align: center;
-    color: var(--color-on-primary);
-    background-color: var(--color-secondary);
-    
-    &--small {
-      padding: .5rem;
-      min-width: 4rem;
-      font-size: .75rem;
-    }
-  }
+  } 
 
   &__error-msg {
     margin-top: 2px;

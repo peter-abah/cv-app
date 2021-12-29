@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/peter-abah/cv-app/static/css/main.333e861b.css",
+    "main.js": "/peter-abah/cv-app/static/js/main.283d07e7.js",
+    "index.html": "/peter-abah/cv-app/index.html",
+    "main.333e861b.css.map": "/peter-abah/cv-app/static/css/main.333e861b.css.map",
+    "main.283d07e7.js.map": "/peter-abah/cv-app/static/js/main.283d07e7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.333e861b.css",
+    "static/js/main.283d07e7.js"
+  ]
+}

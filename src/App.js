@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Header from './components/Header';
 import CVForm from './components/CVForm';
 import Preview from './components/Preview';
+import PrintButton from './components/PrintButton';
 
 class App extends Component {
   constructor() {
@@ -29,8 +30,8 @@ class App extends Component {
 
   handleChange = (e) => {
     const { name, value } = e.target;
-    const userInfo = {...this.state.userInfo, [name]: value};
-    this.setState({ userInfo })
+    const userInfo = { ...this.state.userInfo, [name]: value };
+    this.setState({ userInfo });
   };
 
   addEducation = (education) => {
@@ -100,11 +101,12 @@ class App extends Component {
         />
         <section className="preview-section">
           <h2 className="preview-section__title">CV Preview</h2>
+          <PrintButton
+            ComponentClass={Preview}
+            componentProps={this.state.userInfo}
+          />
           <div className="preview-wrapper">
             <Preview {...this.state.userInfo} />
-          </div>
-          <div className="form__btns">
-            <button className="form__btn" type="button" onClick={this.printCV}>Print</button>
           </div>
         </section>
       </div>

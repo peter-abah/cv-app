@@ -13,64 +13,68 @@ const PersonalInfoForm = (props) => {
     <div id="personal" className="form_section">
       <h2 className="form__section__title">Personal Information</h2>
       <div>
-        <div className="form__field">
-          <label className="form__label" htmlFor="name">
-            Name
-          </label>
-          <input
-            className="form__input"
-            id="name"
-            name="name"
-            type="text"
-            value={name}
-            onChange={handleChange}
-          />
-          {errors.name && <p className="form__error-msg">{errors.name}</p>}
+        <div className="form__row">
+          <div className="form__field">
+            <label className="form__label" htmlFor="name">
+              Name
+            </label>
+            <input
+              className="form__input"
+              id="name"
+              name="name"
+              type="text"
+              value={name}
+              onChange={handleChange}
+            />
+            {errors.name && <p className="form__error-msg">{errors.name}</p>}
+          </div>
+
+          <div className="form__field">
+            <label className="form__label" htmlFor="phone">
+              Telephone No
+            </label>
+            <input
+              className="form__input"
+              type="text"
+              name="phone"
+              id="phone"
+              value={phone}
+              onChange={handleChange}
+            />
+            {errors.phone && <p className="form__error-msg">{errors.phone}</p>}
+          </div>
         </div>
 
-        <div className="form__field">
-          <label className="form__label" htmlFor="phone">
-            Telephone No
-          </label>
-          <input
-            className="form__input"
-            type="text"
-            name="phone"
-            id="phone"
-            value={phone}
-            onChange={handleChange}
-          />
-          {errors.phone && <p className="form__error-msg">{errors.phone}</p>}
-        </div>
+        <div className="form__row">
+          <div className="form__field">
+            <label className="form__label" htmlFor="address">
+              Address
+            </label>
+            <input
+              className="form__input"
+              type="text"
+              name="address"
+              id="address"
+              value={address}
+              onChange={handleChange}
+            />
+            {errors.address && <p className="form__error-msg">{errors.address}</p>}
+          </div>
 
-        <div className="form__field">
-          <label className="form__label" htmlFor="address">
-            Address
-          </label>
-          <input
-            className="form__input"
-            type="text"
-            name="address"
-            id="address"
-            value={address}
-            onChange={handleChange}
-          />
-          {errors.address && <p className="form__error-msg">{errors.address}</p>}
-        </div>
-
-        <div className="form__field">
-          <label className="form__label" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="form__input"
-            type="email"
-            name="email"
-            id="email"
-            value={email}
-            onChange={handleChange}
-          />
-          {errors.email && <p className="form__error-msg">{errors.email}</p>}
+          <div className="form__field">
+            <label className="form__label" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="form__input"
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={handleChange}
+            />
+            {errors.email && <p className="form__error-msg">{errors.email}</p>}
+          </div>
         </div>
 
         <div className="form__field">

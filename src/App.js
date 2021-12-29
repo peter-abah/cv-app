@@ -98,9 +98,15 @@ class App extends Component {
           onDeleteSkill={this.deleteSkill}
           {...this.state.userInfo}
         />
-        <div className="preview-wrapper">
-          <Preview {...this.state.userInfo} />
-        </div>
+        <section className="preview-section">
+          <h2 className="preview-section__title">CV Preview</h2>
+          <div className="preview-wrapper">
+            <Preview {...this.state.userInfo} />
+          </div>
+          <div className="form__btns">
+            <button className="form__btn" type="button" onClick={this.printCV}>Print</button>
+          </div>
+        </section>
       </div>
     );
   }

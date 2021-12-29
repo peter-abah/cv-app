@@ -1,8 +1,19 @@
+.preview-section {
+  margin: 2rem auto;
+  width: fit-content;
+
+  &__title {
+    font-size: 1.5rem;
+  }
+}
+
 .preview-wrapper {
   width: 90vw;
   height: 126.9vw;
   max-width: 800px;
   max-height: 1131px;
+  margin: 1rem 0;
+  box-shadow: 0px 0px 20px -10px;
 }
 
 .preview {

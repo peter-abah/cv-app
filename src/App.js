@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import humanizeString from 'humanize-string';
 import Header from './components/Header';
 import CVForm from './components/CVForm';
 import Preview from './components/Preview';
@@ -25,59 +24,13 @@ class App extends Component {
           description: '',
         },
       },
-      shouldShowPreview: false,
     };
   }
 
-  getErrorMsg = (key) => {
-    const value = this.state.userInfo[key];
-    const emailRegex = /.+@.+/;
-
-    if (key === 'email') {
-      return emailRegex.test(value) ? '' : 'Email is invalid';
-    }
-
-    return value === '' ? `${humanizeString(key)} can't be empty` : '';
-  };
-
-  scrollToForm = () => {
-    const section = document.getElementById('personal');
-    section.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  validateFields = () => {
-    const keys = ['name', 'address', 'email', 'phone', 'description'];
-
-    const errors = keys.reduce((acc, key) => {
-      acc[key] = this.getErrorMsg(key);
-      return acc;
-    }, {});
-
-    const userInfo = { ...this.state.userInfo, errors };
-    this.setState({ userInfo });
-
-    const isValid = Object.values(errors).every((msg) => msg.length === 0);
-    if (!isValid) this.scrollToForm();
-    return isValid;
-  };
-
-  showPreview = () => {
-    if (!this.validateFields()) return;
-
-    this.setState({ shouldShowPreview: true });
-  };
-
   handleChange = (e) => {
     const { name, value } = e.target;
-    const updated = { [name]: value };
-
-    this.setState({
-      userInfo: { ...this.state.userInfo, ...updated },
-    });
-  };
-
-  handleSubmit = (e) => {
-    e.preventDefault();
+    const userInfo = {...this.state.userInfo, [name]: value};
+    this.setState({ userInfo })
   };
 
   addEducation = (education) => {
@@ -145,14 +98,9 @@ class App extends Component {
           onDeleteSkill={this.deleteSkill}
           {...this.state.userInfo}
         />
-        <button className="form__btn" onClick={this.showPreview}>
-          Preview
-        </button>
-        {this.state.shouldShowPreview && (
-          <div className="preview-wrapper">
-            <Preview {...this.state.userInfo} />
-          </div>
-        )}
+        <div className="preview-wrapper">
+          <Preview {...this.state.userInfo} />
+        </div>
       </div>
     );
   }

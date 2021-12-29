@@ -21,6 +21,7 @@ const EducationForm = (props) => {
               name="school"
               id="school"
               value={school}
+              placeholder="University of Lagos"
               onChange={handleChange}
             />
             {errors.school && <p className="form__error-msg">{errors.school}</p>}
@@ -34,6 +35,7 @@ const EducationForm = (props) => {
               name="course"
               id="course"
               value={course}
+              placeholder="Physics"
               onChange={handleChange}
             />
             {errors.course && <p className="form__error-msg">{errors.course}</p>}
@@ -49,6 +51,7 @@ const EducationForm = (props) => {
               name="degree"
               id="degree"
               value={degree}
+              placeholder="B. Sc"
               onChange={handleChange}
             />
             {errors.degree && <p className="form__error-msg">{errors.degree}</p>}

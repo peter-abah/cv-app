@@ -24,6 +24,7 @@ const PersonalInfoForm = (props) => {
               name="name"
               type="text"
               value={name}
+              placeholder="John Doe"
               onChange={handleChange}
             />
             {errors.name && <p className="form__error-msg">{errors.name}</p>}
@@ -39,6 +40,7 @@ const PersonalInfoForm = (props) => {
               name="phone"
               id="phone"
               value={phone}
+              placeholder="+234 8004002001"
               onChange={handleChange}
             />
             {errors.phone && <p className="form__error-msg">{errors.phone}</p>}
@@ -56,6 +58,7 @@ const PersonalInfoForm = (props) => {
               name="address"
               id="address"
               value={address}
+              placeholder="Your address here"
               onChange={handleChange}
             />
             {errors.address && <p className="form__error-msg">{errors.address}</p>}
@@ -71,6 +74,7 @@ const PersonalInfoForm = (props) => {
               name="email"
               id="email"
               value={email}
+              placeholder="johndoe@email.com"
               onChange={handleChange}
             />
             {errors.email && <p className="form__error-msg">{errors.email}</p>}
@@ -86,6 +90,7 @@ const PersonalInfoForm = (props) => {
             name="description"
             id="description"
             value={description}
+            placeholder="A brief description about you"
             onChange={handleChange}
           ></textarea>
           {errors.description && (

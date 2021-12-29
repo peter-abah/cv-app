@@ -23,6 +23,7 @@ const WorkForm = (props) => {
             type="text"
             name="position"
             id="position"
+            placeholder="Assistant Manager"
             value={position}
             onChange={handleChange}
           />
@@ -38,6 +39,7 @@ const WorkForm = (props) => {
             type="text"
             name="organisation"
             id="organisation"
+            placeholder="Some company"
             value={organisation}
             onChange={handleChange}
           />
@@ -86,6 +88,7 @@ const WorkForm = (props) => {
           name="description"
           id="description"
           value={description}
+          placeholder="Details about the job"
           onChange={handleChange}
         ></textarea>
         {errors.description && <p className="form__error-msg">{errors.description}</p>}

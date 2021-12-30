@@ -26,9 +26,9 @@ This main purpose of the project was to practice what I have learnt in React
 
 
 ### Libraries used
-- [date-fns](link)
-- [react-to-print](link)
-- [uniqid](link)
+- [date-fns](https://date-fns.org)
+- [react-to-print](https://npmjs.com/package/react-to-print)
+- [uniqid](https://npmjs.com/package/uniqid)
 
 
 ## Screenshot

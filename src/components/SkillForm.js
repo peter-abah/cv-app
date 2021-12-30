@@ -11,11 +11,12 @@ const SkillForm = (props) => {
           name="name"
           id="skill"
           value={name}
+          data-key="skills"
           onChange={handleChange}
         />
       </div>
       <div className="btns">
-        <button className="btn" type="button" onClick={saveInfo}>
+        <button className="btn" type="button" data-key="skills" onClick={saveInfo}>
           SAVE
         </button>
       </div>

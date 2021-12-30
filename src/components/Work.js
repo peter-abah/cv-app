@@ -30,6 +30,7 @@ const Work = (props) => {
           className="btn btn--small"
           type="button"
           data-id={id}
+          data-key="work"
           onClick={toggleForm}
         >
           Edit
@@ -38,6 +39,7 @@ const Work = (props) => {
           className="btn btn--small"
           type="button"
           data-id={id}
+          data-key="work"
           onClick={deleteWork}
         >
           Delete

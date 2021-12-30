@@ -9,6 +9,7 @@ const EducationForm = (props) => {
     saveInfo,
     closeForm,
   } = props;
+  
   return (
     <div>
       <div>
@@ -22,6 +23,7 @@ const EducationForm = (props) => {
               id="school"
               value={school}
               placeholder="University of Lagos"
+              data-key="education"
               onChange={handleChange}
             />
             {errors.school && <p className="form__error-msg">{errors.school}</p>}
@@ -36,6 +38,7 @@ const EducationForm = (props) => {
               id="course"
               value={course}
               placeholder="Physics"
+              data-key="education"
               onChange={handleChange}
             />
             {errors.course && <p className="form__error-msg">{errors.course}</p>}
@@ -52,6 +55,7 @@ const EducationForm = (props) => {
               id="degree"
               value={degree}
               placeholder="B. Sc"
+              data-key="education"
               onChange={handleChange}
             />
             {errors.degree && <p className="form__error-msg">{errors.degree}</p>}
@@ -67,6 +71,7 @@ const EducationForm = (props) => {
               id="graduationYear"
               name="graduationYear"
               value={graduationYear}
+              data-key="education"
               onChange={handleChange}
             />
             {errors.graduationYear && <p className="form__error-msg">{errors.graduationYear}</p>}
@@ -74,11 +79,11 @@ const EducationForm = (props) => {
         </div>
 
         <div className="btns">
-          <button className="btn" type="button" onClick={saveInfo}>
+          <button className="btn" type="button" data-key="education" onClick={saveInfo}>
             SAVE
           </button>
 
-          <button className="btn" type="button" onClick={closeForm}>
+          <button className="btn" type="button" data-key="education" onClick={closeForm}>
             CLOSE
           </button>
         </div>

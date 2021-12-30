@@ -1,8 +1,15 @@
 import formatDate from '../formatDate';
 
 const Education = (props) => {
-  const { school, degree, graduationYear, course, toggleForm, id, deleteEducation } =
-    props;
+  const {
+    school,
+    degree,
+    graduationYear,
+    course,
+    toggleForm,
+    id,
+    deleteEducation,
+  } = props;
   return (
     <div className="form__section-preview">
       <h3 className="form__section-preview__title">
@@ -11,10 +18,22 @@ const Education = (props) => {
       <p>{formatDate(graduationYear)}</p>
       <p>{school}</p>
       <div className="form__section-preview__btns">
-        <button className="btn btn--small" data-id={id} type="button" onClick={toggleForm}>
+        <button
+          className="btn btn--small"
+          data-id={id}
+          data-key="education"
+          type="button"
+          onClick={toggleForm}
+        >
           Edit
         </button>
-        <button className="btn btn--small" data-id={id} type="button" onClick={deleteEducation}>
+        <button
+          className="btn btn--small"
+          data-id={id}
+          data-key="education"
+          type="button"
+          onClick={deleteEducation}
+        >
           Delete
         </button>
       </div>

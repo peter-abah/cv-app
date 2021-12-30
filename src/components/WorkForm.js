@@ -25,6 +25,7 @@ const WorkForm = (props) => {
             id="position"
             placeholder="Assistant Manager"
             value={position}
+            data-key="work"
             onChange={handleChange}
           />
           {errors.position && <p className="form__error-msg">{errors.position}</p>}
@@ -41,6 +42,7 @@ const WorkForm = (props) => {
             id="organisation"
             placeholder="Some company"
             value={organisation}
+            data-key="work"
             onChange={handleChange}
           />
           {errors.organisation && <p className="form__error-msg">{errors.organisation}</p>}
@@ -58,6 +60,7 @@ const WorkForm = (props) => {
             name="startDate"
             id="startDate"
             value={startDate}
+            data-key="work"
             onChange={handleChange}
           />
           {errors.startDate && <p className="form__error-msg">{errors.startDate}</p>}
@@ -73,6 +76,7 @@ const WorkForm = (props) => {
             name="endDate"
             id="endDate"
             value={endDate}
+            data-key="work"
             onChange={handleChange}
           />
           {errors.endDate && <p className="form__error-msg">{errors.endDate}</p>}
@@ -89,17 +93,18 @@ const WorkForm = (props) => {
           id="description"
           value={description}
           placeholder="Details about the job"
+          data-key="work"
           onChange={handleChange}
         ></textarea>
         {errors.description && <p className="form__error-msg">{errors.description}</p>}
       </div>
 
       <div className="btns">
-        <button className="btn" type="button" onClick={saveInfo}>
+        <button className="btn" type="button" data-key="work" onClick={saveInfo}>
           SAVE
         </button>
 
-        <button className="btn" type="button" onClick={closeForm}>
+        <button className="btn" type="button" data-key="work" onClick={closeForm}>
           CLOSE
         </button>
       </div>

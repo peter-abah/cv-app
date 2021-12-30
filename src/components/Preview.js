@@ -4,16 +4,9 @@ import EducationPreview from './EducationPreview';
 
 class Preview extends Component {
   render() {
-    const {
-      name,
-      email,
-      phone,
-      address,
-      description,
-      works,
-      educations,
-      skills,
-    } = this.props;
+    const { personal, work, education, skills } = this.props;
+    const { name, email, address, phone, description } = personal.entry;
+
     return (
       <div className="preview">
         <div className="preview__main">
@@ -24,15 +17,15 @@ class Preview extends Component {
 
           <div className="preview__section">
             <h2 className="preview__section__title">Work Experience</h2>
-            {works.map((work) => (
-              <WorkPreview key={work.id} {...work} />
+            {work.list.map((entry) => (
+              <WorkPreview key={entry.id} {...entry} />
             ))}
           </div>
 
           <div className="preview__section">
             <h2 className="preview__section__title">Education</h2>
-            {educations.map((education) => (
-              <EducationPreview key={education.id} {...education} />
+            {education.list.map((entry) => (
+              <EducationPreview key={entry.id} {...entry} />
             ))}
           </div>
         </div>
@@ -61,12 +54,12 @@ class Preview extends Component {
           <div className="preview-sidebar__section">
             <h2 className="preview-sidebar__section__title">Skills</h2>
             <div className="preview-sidebar__section__details">
-              {skills.map(({ name, id }) => (
+              {skills.list.map((entry) => (
                 <p
                   className="preview-sidebar__info preview-sidebar__info__title"
-                  key={id}
+                  key={entry.id}
                 >
-                  {name}
+                  {entry.name}
                 </p>
               ))}
             </div>
@@ -75,6 +68,6 @@ class Preview extends Component {
       </div>
     );
   }
-};
+}
 
 export default Preview;

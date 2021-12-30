@@ -7,6 +7,7 @@ const Skill = (props) => {
         className="btn btn--small"
         type="button"
         data-id={id}
+        data-key="skills"
         onClick={deleteSkill}
       >
         Delete

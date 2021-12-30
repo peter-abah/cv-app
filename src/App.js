@@ -3,8 +3,7 @@ import uniqid from 'uniqid';
 import humanizeString from 'humanize-string';
 import Header from './components/Header';
 import CVForm from './components/CVForm';
-import Preview from './components/Preview';
-import PrintButton from './components/PrintButton';
+import PreviewSection from './components/PreviewSection';
 
 class App extends Component {
   constructor() {
@@ -159,16 +158,7 @@ class App extends Component {
           openEditEntryForm={this.openEditEntryForm}
           {...this.state}
         />
-        <section className="preview-section">
-          <h2 className="preview-section__title">CV Preview</h2>
-          <PrintButton
-            ComponentClass={Preview}
-            componentProps={this.state}
-          />
-          <div className="preview-wrapper">
-            <Preview {...this.state} />
-          </div>
-        </section>
+        <PreviewSection {...this.state}/>
       </div>
     );
   }

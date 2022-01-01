@@ -1,31 +1,27 @@
-import { Component } from 'react';
-import ReactToPrint from 'react-to-print';
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 
-class PrintButton extends Component {
-  componentRef = null;
+const PrintButton = (props) => {
+  const componentRef = useRef();
 
-  printTrigger = () => {
-    return <button className="btn">Print</button>;
-  };
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
-  render() {
-    const { ComponentClass, componentProps } = this.props;
+  const { ComponentToPrint, componentProps } = props;
 
-    return (
-      <div className="btns">
-        <ReactToPrint
-          trigger={this.printTrigger}
-          content={() => this.componentRef}
+  return (
+    <div className="btns">
+      <button className="btn" onClick={handlePrint}>Print</button>
+
+      <div style={{display: 'none'}}>
+        <ComponentToPrint
+          ref={componentRef}
+          {...componentProps}
         />
-        <div style={{display: 'none'}}>
-          <ComponentClass
-            ref={(el) => (this.componentRef = el)}
-            {...componentProps}
-          />
-        </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default PrintButton;

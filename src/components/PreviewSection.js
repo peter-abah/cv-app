@@ -6,7 +6,7 @@ const PreviewSection = (props) => {
     <section className="preview-section">
       <h2 className="preview-section__title">CV Preview</h2>
       <PrintButton
-        ComponentClass={Preview}
+        ComponentToPrint={Preview}
         componentProps={props}
       />
       <div className="preview-wrapper">

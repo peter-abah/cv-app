@@ -1,5 +1,5 @@
 const SkillForm = (props) => {
-  const { name, handleChange, saveInfo } = props;
+  const { name, handleChange, errors, saveInfo } = props;
 
   return (
     <div>
@@ -14,6 +14,7 @@ const SkillForm = (props) => {
           data-key="skills"
           onChange={handleChange}
         />
+        {errors.name && <p className="form__error-msg">{errors.name}</p>}
       </div>
       <div className="btns">
         <button className="btn" type="button" data-key="skills" onClick={saveInfo}>

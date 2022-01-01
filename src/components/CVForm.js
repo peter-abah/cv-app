@@ -123,6 +123,7 @@ const CVForm = (props) => {
         <SkillForm
           saveInfo={addEntry}
           handleChange={handleChange}
+          errors={skills.errors}
           {...skills.entry}
         />
       </div>

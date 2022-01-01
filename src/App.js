@@ -1,193 +1,179 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import uniqid from 'uniqid';
 import humanizeString from 'humanize-string';
 import Header from './components/Header';
 import CVForm from './components/CVForm';
 import PreviewSection from './components/PreviewSection';
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      personal: {
-        entry: {
-          name: '',
-          address: '',
-          email: '',
-          phone: '',
-        },
-        errors: {},
-      },
-      education: {
-        list: [],
-        entry: {
-          school: '',
-          course: '',
-          degree: '',
-          graduationYear: '',
-          id: uniqid(),
-        },
-        errors: {
-          school: '',
-          course: '',
-          degree: '',
-          graduationYear: '',
-        },
-        isFormOpen: true,
-        isEditMode: false,
-      },
-      work: {
-        list: [],
-        entry: {
-          organisation: '',
-          position: '',
-          startDate: '',
-          endDate: '',
-          description: '',
-          id: uniqid(),
-        },
-        errors: {
-          organisation: '',
-          position: '',
-        },
-        isFormOpen: true,
-        isEditMode: false,
-      },
-      skills: {
-        list: [],
-        entry: {
-          name: '',
-          id: uniqid(),
-        },
-        errors: { name: '' },
-      },
-    };
-  }
+const defaultEntries = {
+  personal: () => ({
+    name: '',
+    address: '',
+    email: '',
+    phone: '',
+  }),
+  work: () => ({
+    organisation: '',
+    position: '',
+    startDate: '',
+    endDate: '',
+    description: '',
+    id: uniqid(),
+  }),
+  education: () => ({
+    school: '',
+    course: '',
+    degree: '',
+    graduationYear: '',
+    id: uniqid(),
+  }),
+  skills: () => ({
+    name: '',
+    id: uniqid(),
+  }),
+};
 
-  toggleEntryForm = (e) => {
+const initialStates = {
+  personal: () => ({
+    entry: defaultEntries.personal(),
+    errors: {},
+  }),
+  work: () => ({
+    list: [],
+    entry: defaultEntries.work(),
+    errors: {
+      organisation: '',
+      position: '',
+    },
+    isFormOpen: true,
+    isEditMode: false,
+  }),
+  education: () => ({
+    list: [],
+    entry: defaultEntries.education(),
+    errors: {
+      school: '',
+      course: '',
+      degree: '',
+      graduationYear: '',
+    },
+    isFormOpen: true,
+    isEditMode: false,
+  }),
+  skills: () => ({
+    list: [],
+    entry: defaultEntries.skills(),
+    errors: { name: '' },
+  }),
+};
+
+const App = (props) => {
+  const [work, setWork] = useState(initialStates.work());
+  const [personal, setPersonal] = useState(initialStates.personal());
+  const [education, setEducation] = useState(initialStates.education());
+  const [skills, setSkills] = useState(initialStates.skills());
+
+  const state = { personal, work, education, skills };
+  const setState = { personal: setPersonal, work: setWork, education: setEducation, skills: setSkills };
+
+  const toggleEntryForm = (e) => {
     const { key } = e.target.dataset;
-    if (this.state[key].isEditMode) return;
+    if (state[key].isEditMode) return;
 
-    const isFormOpen = !this.state[key].isFormOpen;
-    const section = { ...this.state[key], isFormOpen };
-    this.setState({ [key]: section });
+    const isFormOpen = !state[key].isFormOpen;
+    setState[key]({...state[key], isFormOpen});
   };
 
-  openEditEntryForm = (e) => {
+  const openEditEntryForm = (e) => {
     const { key, id } = e.target.dataset;
-    if (this.state[key].isEditMode) return;
+    if (state[key].isEditMode) return;
 
-    const entry = this.state[key].list.filter((elem) => elem.id === id)[0];
-    const section = {
-      ...this.state[key],
+    const entry = state[key].list.filter((elem) => elem.id === id)[0];
+    setState[key]({
+      ...state[key],
       entry,
       isEditMode: true,
       isFormOpen: true,
-    };
-    this.setState({ [key]: section });
+    });
   };
 
-  handleChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     const { key } = e.target.dataset;
     
-    const entry = { ...this.state[key].entry, [name]: value };
-    const section = { ...this.state[key], entry };
-    this.setState({ [key]: section });
+    const entry = { ...state[key].entry, [name]: value };
+    setState[key]({ ...state[key], entry });
   };
 
-  getErrorMsg = (field, value) => {
+  const getErrorMsg = (field, value) => {
     if (value !== '') return '';
 
     return `${humanizeString(field)} should not be blank`;
   };
 
-  isValidEntry = (errors) => {
+  const isValidEntry = (errors) => {
     const isValid = Object.values(errors).every((msg) => msg === '');
     return isValid;
   };
 
-  getErrors = (key) => {
-    const errorFields = Object.keys(this.state[key].errors);
-    const { entry } = this.state[key];
+  const getErrors = (key) => {
+    const errorFields = Object.keys(state[key].errors);
+    const { entry } = state[key];
 
     const errors = errorFields.reduce((result, field) => {
       const value = entry[field];
-      result[field] = this.getErrorMsg(field, value);
+      result[field] = getErrorMsg(field, value);
       return result;
     }, {});
 
     return errors;
   };
 
-  addEntry = (e) => {
+  const addEntry = (e) => {
     const { key } = e.target.dataset
-    const errors = this.getErrors(key);
-    let section = { ...this.state[key], errors };
+    const errors = getErrors(key);
 
-    if (this.isValidEntry(errors)) { // only adds entry if errors object is empty or valid
-      const entry = this.state[key].entry;
-
-      // filters entry from list if it is an existing entry that is being updated
-      let list = this.state[key].list.filter((elem) => elem.id !== entry.id);
-      list = [...list, entry];
-
-      const defaultEntry = this.props.default[key]();
-      section = { ...section, list, entry: defaultEntry, isEditMode: false, isFormOpen: false};
+    if (!isValidEntry(errors)) {
+      setState[key]({ ...state[key], errors });
+      return;
     }
 
-    this.setState({ [key]: section });
+    const { entry } = state[key];
+    // filters entry from list if it is an existing entry that is being updated
+    let list = state[key].list.filter((elem) => elem.id !== entry.id);
+    list = [...list, entry];
+
+    const defaultEntry = defaultEntries[key]();
+    setState[key]({
+      ...state[key],
+      list,
+      errors,
+      entry: defaultEntry,
+      isEditMode: false,
+      isFormOpen: false
+    });
   };
 
-  deleteEntry = (e) => {
+  const deleteEntry = (e) => {
     const { key, id } = e.target.dataset;
-    const list = this.state[key].list.filter((elem) => elem.id !== id);
-    const section = { ...this.state[key], list };
-    this.setState({ [key]: section });
+    const list = state[key].list.filter((elem) => elem.id !== id);
+    setState[key]({ ...state[key], list });
   };
 
-  render() {
-    return (
-      <div>
-        <Header />
-        <CVForm
-          handleChange={this.handleChange}
-          deleteEntry={this.deleteEntry}
-          addEntry={this.addEntry}
-          toggleEntryForm={this.toggleEntryForm}
-          openEditEntryForm={this.openEditEntryForm}
-          {...this.state}
-        />
-        <PreviewSection {...this.state}/>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Header />
+      <CVForm
+        handleChange={handleChange}
+        deleteEntry={deleteEntry}
+        addEntry={addEntry}
+        toggleEntryForm={toggleEntryForm}
+        openEditEntryForm={openEditEntryForm}
+        {...state}
+      />
+      <PreviewSection {...state}/>
+    </div>
+  );
 }
-
-// setting the default state of the sections
-// saving them in functions so a new object is returned when called
-App.defaultProps = {
-  default: {
-    work: () => ({
-      organisation: '',
-      position: '',
-      startDate: '',
-      endDate: '',
-      description: '',
-      id: uniqid(),
-    }),
-    education: () => ({
-      school: '',
-      course: '',
-      degree: '',
-      graduationYear: '',
-      id: uniqid(),
-    }),
-    skills: () => ({
-      name: '',
-      id: uniqid(),
-    }),
-  },
-};
 
 export default App;

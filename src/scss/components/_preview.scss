@@ -10,8 +10,7 @@
 .preview-wrapper {
   width: 90vw;
   height: 126.9vw;
-  max-width: 800px;
-  max-height: 1131px;
+  min-height: 126.9vw;
   margin: 1rem 0;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, 
               rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -30,6 +29,7 @@
   &-sidebar {
     grid-column: 1 / 2;
     padding: min(1.25rem, 2.2vw) 0;
+    height: 100%;
     color: var(--color-preview-sidebar);;
     background: var(--color-bg-preview-sidebar);
 
@@ -70,12 +70,7 @@
   }
 
   &__info {
-    display: flex;
     padding-top: min(1.25rem, 2.2vw);
-
-    & > * {
-      width: 50%;
-    }
 
     &__title {
       font-size: min(1.0625rem, 1.17vw);
